@@ -2,7 +2,7 @@ public class LinkStrand implements IDnaStrand {
 	private int myIndex = 0;
 	private int myLocalIndex = 0;
 	private int myCurrent = 0;
-
+	
 	private class Node {
 		String info;
 		Node next;
@@ -44,7 +44,7 @@ public class LinkStrand implements IDnaStrand {
 		Node first = myFirst;
 		StringBuilder ret = new StringBuilder();
 		while(first.next != null){
-			ret.append(first);
+			ret.append(first.info);
 			first = first.next;
 		}
 		return ret.toString();
