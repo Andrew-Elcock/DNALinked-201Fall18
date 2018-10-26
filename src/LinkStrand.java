@@ -1,7 +1,4 @@
-
-
-public class LinkedStrand implements IDnaStrand {
-
+public class LinkStrand implements IDnaStrand {
 	private int myIndex = 0;
 	private int myLocalIndex = 0;
 	private int myCurrent = 0;
@@ -18,11 +15,11 @@ public class LinkedStrand implements IDnaStrand {
 	private long mySize;
 	private int myAppends;
 
-	public LinkedStrand() {
+	public LinkStrand() {
 		this("");
 	}
 
-	public LinkedStrand(String param) {
+	public LinkStrand(String param) {
 		initialize(param);
 		
 	}
@@ -55,7 +52,7 @@ public class LinkedStrand implements IDnaStrand {
 
 	@Override
 	public IDnaStrand getInstance(String source) {
-		return new LinkedStrand(source);
+		return new LinkStrand(source);
 	}
 
 	@Override
@@ -86,7 +83,7 @@ public class LinkedStrand implements IDnaStrand {
 			n.info = tempsb.toString();
 			n = n.next;
 		}
-		LinkedStrand ret = new LinkedStrand(first.info);
+		LinkStrand ret = new LinkStrand(first.info);
 		first = first.next;
 		while(first != null) {
 			ret.append(first.info);
@@ -126,4 +123,3 @@ public class LinkedStrand implements IDnaStrand {
 
 
 }
-
