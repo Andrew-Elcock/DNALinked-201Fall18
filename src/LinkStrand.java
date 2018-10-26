@@ -1,7 +1,7 @@
 public class LinkStrand implements IDnaStrand {
 	private int myIndex = 0;
 	private int myLocalIndex = 0;
-	private int myCurrent = 0;
+	private Node myCurrent;
 	
 	private class Node {
 		String info;
@@ -37,6 +37,7 @@ public class LinkStrand implements IDnaStrand {
 		myLast = v;
 		myAppends = 0;
 		mySize = source.length();
+		myCurrent = myFirst;
 
 	}
 	
@@ -164,30 +165,16 @@ public class LinkStrand implements IDnaStrand {
 		if(index < myIndex) {
 			myIndex = 0;
 			myLocalIndex = 0;
-			myCurrent = 0;
+			myCurrent = myFirst;
 		}
-		int count = myIndex;
-		myIndex = index;
-		int dex = myLocalIndex;
-		Node list = myFirst;
-		int mylistcount = 0;
-		while(mylistcount < myCurrent) {
-			list = list.next;
-			mylistcount += 1;
-		}
-		while (count != index) {
-			count++;
-			dex++;
-			if (dex >= list.info.length()) {
-				dex = 0;
-				list = list.next;
-				myCurrent += 1;
+		while (myIndex != index) {
+			myIndex++;
+			myLocalIndex++;
+			if (myLocalIndex >= myCurrent.info.length()) {
+				myLocalIndex = 0;
+				myCurrent = myCurrent.next;
 			}
 		}
-		myLocalIndex = dex;
-		return list.info.charAt(dex);
-	}
-		
-
-
+        return myCurrent.info.charAt(myLocalIndex);
+        }
 }
