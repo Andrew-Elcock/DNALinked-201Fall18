@@ -161,6 +161,11 @@ public class LinkStrand implements IDnaStrand {
 //	}
 	
 	public char charAt(int index) {
+		if(index < myIndex) {
+			myIndex = 0;
+			myLocalIndex = 0;
+			myCurrent = 0;
+		}
 		int count = myIndex;
 		myIndex = index;
 		int dex = myLocalIndex;
