@@ -175,6 +175,9 @@ public class LinkStrand implements IDnaStrand {
 			myLocalIndex++;
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
+				if(myCurrent.next == null) {
+					throw new IndexOutOfBoundsException("Index Out of Bounds");
+				}
 				myCurrent = myCurrent.next;
 			}
 		}
