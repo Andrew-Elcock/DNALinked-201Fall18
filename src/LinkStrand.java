@@ -63,7 +63,7 @@ public class LinkStrand implements IDnaStrand {
 		myLast = myLast.next;
 		myAppends += 1;
 		mySize += dna.length();
-		return null;
+		return this;
 	}
 
 	@Override
