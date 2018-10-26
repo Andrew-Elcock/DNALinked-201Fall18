@@ -161,17 +161,25 @@ public class LinkStrand implements IDnaStrand {
 //	}
 	
 	public char charAt(int index) {
-		int count = 0;
-		int dex = 0;
+		int count = myIndex;
+		myIndex = index;
+		int dex = myLocalIndex;
 		Node list = myFirst;
+		int mylistcount = 0;
+		while(mylistcount < myCurrent) {
+			list = list.next;
+			mylistcount += 1;
+		}
 		while (count != index) {
 			count++;
 			dex++;
 			if (dex >= list.info.length()) {
 				dex = 0;
 				list = list.next;
+				myCurrent += 1;
 			}
 		}
+		myLocalIndex = dex;
 		return list.info.charAt(dex);
 	}
 		
