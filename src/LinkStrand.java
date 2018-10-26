@@ -93,7 +93,7 @@ public class LinkStrand implements IDnaStrand {
 			ret.append(first.info);
 			first = first.next;
 		}
-		//ret.append(first.info);
+		ret.append(first.info);
 		return ret;
 	}
 
