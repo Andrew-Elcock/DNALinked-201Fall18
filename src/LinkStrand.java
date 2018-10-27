@@ -3,6 +3,11 @@ public class LinkStrand implements IDnaStrand {
 	private int myLocalIndex = 0;
 	private Node myCurrent;
 	
+	/*
+	 * A sub-class that initializes the linked
+	 * list structure necessary for the 
+	 * class
+	 */
 	private class Node {
 		String info;
 		Node next;
@@ -15,21 +20,38 @@ public class LinkStrand implements IDnaStrand {
 	private long mySize;
 	private int myAppends;
 
+	/*
+	 * A constructor without a parameter
+	 * that, when called, initializes a
+	 * LinkStrand with parameter ""
+	 */
 	public LinkStrand() {
 		this("");
 	}
 
+	/*
+	 * A constructor that initializes LinkStrand
+	 * with the parameter passed to it
+	 * @see initialize
+	 */
 	public LinkStrand(String param) {
 		initialize(param);
 		
 	}
 
-
+	/*
+	 * @return the size of the LinkStrand
+	 */
 	@Override
 	public long size() {
 		return mySize;
 	}
 
+	/*
+	 * Reverts the instance variables
+	 * of the LinkStrand to the default state
+	 * when given the info for the first node
+	 */
 	@Override
 	public void initialize(String source) {
 		Node v = new Node(source);
@@ -43,6 +65,11 @@ public class LinkStrand implements IDnaStrand {
 
 	}
 	
+	/*
+	 * Changes a given linked list into a
+	 * concatenated String by creating a StringBuilder
+	 * class
+	 */
 	public String toString() {
 		Node first = myFirst;
 		StringBuilder ret = new StringBuilder();
@@ -54,11 +81,21 @@ public class LinkStrand implements IDnaStrand {
 		return ret.toString();
 	}
 
+	/*
+	 * Creates a new LinkedStrand with the given
+	 * String
+	 */
 	@Override
 	public IDnaStrand getInstance(String source) {
 		return new LinkStrand(source);
 	}
 
+	/*
+	 * Appends a node to the end
+	 * of the linked list present within
+	 * the LinkStrand class
+	 * @return this
+	 */
 	@Override
 	public IDnaStrand append(String dna) {
 		Node n = new Node(dna);
@@ -68,39 +105,15 @@ public class LinkStrand implements IDnaStrand {
 		mySize += dna.length();
 		return this;
 	}
-
-//	@Override
-//	public IDnaStrand reverse() {
-//		Node cur = myFirst;
-//		StringBuilder tempsb = new StringBuilder(myFirst.info);
-//		tempsb.reverse();
-//		Node n = new Node(tempsb.toString());
-//		if(cur.next != null) {
-//			cur = cur.next;
-//		}
-//		while(cur.next != null) {
-//			Node temp = new Node(cur.info);
-//			temp.next = n;
-//			StringBuilder tempsb2 = new StringBuilder(temp.info);
-//			tempsb2.reverse();
-//			temp.info = tempsb2.toString();
-//			n = temp;
-//			cur = cur.next;
-//		}
-//		Node first = n;
-//		LinkStrand ret = new LinkStrand(first.info);
-//		if(first.next != null) {
-//			first = first.next;
-//		}
-//		while(first.next != null) {
-//			ret.append(first.info);
-//			first = first.next;
-//		}
-//		//ret.append(first.info);
-//		return ret;
-//	}
-
-
+	
+	/*
+	 * Reverses a linked list and 
+	 * the string present within 
+	 * each node of the linked list
+	 * before returning a new linked strand
+	 * consisting of that linked list
+	 * @return reversed LinkStrand 
+	 */
 	@Override
 	public IDnaStrand reverse() {
 		Node cur = myFirst;
@@ -134,35 +147,22 @@ public class LinkStrand implements IDnaStrand {
 		return ret;
 	}	
 	
+	/*
+	 * @return the number of appends
+	 * on the LinkStrand
+	 */
 	@Override
 	public int getAppendCount() {
 		return myAppends;
 	}
 
-//	@Override
-//	public char charAt(int index) {
-//		int count = myIndex;
-//		int dex = myLocalIndex;
-//		Node list = myFirst;
-//		int listcount = 0;
-//		while(listcount < myCurrent) {
-//			list = list.next;
-//			listcount += 1;
-//		}
-//		while (count != index) {
-//			count++;
-//			dex++;
-//			myLocalIndex = dex;
-//			if (dex >= list.info.length()) {
-//				dex = 0;
-//				list = list.next;
-//				myCurrent += 1;
-//			}
-//		}
-//		myIndex = index;
-//		return list.info.charAt(dex);
-//	}
-	
+	/*
+	 * Finds a character at a specific index
+	 * Altered so that finding a subsequent character
+	 * is more efficient by starting when the last call
+	 * left off
+	 * @return desired character
+	 */
 	public char charAt(int index) {
 		if(index >= mySize) {
 			throw new IndexOutOfBoundsException("Index Out of Bounds");
